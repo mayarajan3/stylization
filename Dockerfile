@@ -16,7 +16,8 @@ WORKDIR /app
 COPY stylize.py /app/stylize.py
 
 # Install required Python packages
-RUN pip install --no-cache-dir tensorflow-hub pillow numpy
+RUN python3 -m pip install --upgrade pip && \
+    pip install --no-cache-dir tensorflow-hub pillow numpy
 
 # Ensure the script runs as expected
-ENTRYPOINT ["python", "/app/stylize.py"]
+CMD ["python", "/app/stylize.py"]
