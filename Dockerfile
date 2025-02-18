@@ -22,7 +22,7 @@ COPY content.jpg /app/content.jpg
 COPY style.jpg /app/style.jpg
 
 # Copy the TensorFlow .whl file into the container
-COPY tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
+# CCOPY tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
 
 # Install required Python packages
 RUN python3 -m pip install --upgrade pip && \
