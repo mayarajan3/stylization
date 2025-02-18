@@ -22,12 +22,16 @@ COPY content.jpg /app/content.jpg
 COPY style.jpg /app/style.jpg
 
 # Copy the TensorFlow .whl file into the container
-# CCOPY tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
+# COPY tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
 
 # Install required Python packages
 RUN python3 -m pip install --upgrade pip && \
     pip install --no-cache-dir tensorflow-hub pillow numpy && \
-    pip install "https://drive.google.com/uc?export=download&id=1T1wJsyZopeNUqCnqjeRbCImxE_BhDlDN" && pip install protobuf==3.20.0
+    pip install gdown && pip install protobuf==3.20.0
+
+RUN gdown "https://drive.google.com/uc?export=download&id=1T1wJsyZopeNUqCnqjeRbCImxE_BhDlDN" -O /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
+
+RUN pip install /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
 
 # Ensure the script runs as expected
 CMD ["python", "/app/stylize.py"]
