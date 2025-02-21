@@ -82,15 +82,16 @@ def texturify():
 
         # Texture map
         texture_map = {
-            'brick': '/app/textures/brick.png',
-            'wood': '/app/textures/wood.png',
-            'metal': '/app/textures/metal.png'
+            'metal': '/app/metal.png',
+            'wood': '/app/wood.png',
+            'fuzzy': '/app/fuzzy.png'
         }
 
         if texture_name not in texture_map:
             return jsonify({'error': 'Invalid texture name. Choose from: brick, wood, metal'}), 400
 
-        texture_path = "/app/fuzzy.png"
+        texture_path = texture_map[texture_name]
+        shutil.copy(texture_path, '/app/texture.png')
 
         # Run texturify.py
         result = subprocess.run(

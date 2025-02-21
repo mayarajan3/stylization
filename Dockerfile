@@ -22,6 +22,9 @@ COPY stylize.py /app/stylize.py
 COPY texturify.py /app/texturify.py
 
 COPY fuzzy.jpg /app/fuzzy.png
+COPY wood.png /app/wood.png
+COPY metal.png /app/metal.png
+
 COPY fuzzy.jpg /app/texture.png
 COPY fuzzy.jpg /app/content.png
 
