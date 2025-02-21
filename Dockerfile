@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1
 ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
 # Set working directory inside the container
-RUN mkdir -p /app
+RUN mkdir -p /app && chmod 777 /app
 
 # Set working directory inside the container
 WORKDIR /app
@@ -15,15 +15,15 @@ WORKDIR /app
 # Verify that /app exists
 RUN ls -l /app
 
+RUN apt-get update && apt-get install -y libgl1
+
 # Copy the Python script into the container
 COPY stylize.py /app/stylize.py
+COPY texturify.py /app/texturify.py
 
-# COPY content.jpg /app/content.jpg
-# COPY style.jpg /app/style.jpg
-
-COPY monet.jpg /app/monet.jpg
-COPY pencil.jpg /app/pencil.jpg
-COPY comic.jpg /app/comic.jpg
+COPY fuzzy.png /app/fuzzy.png
+COPY fuzzy.png /app/texture.png
+COPY wave.jpg /app/content.png
 
 COPY api_server.py /app/api_server.py
 
@@ -32,12 +32,7 @@ COPY api_server.py /app/api_server.py
 
 # Install required Python packages
 RUN python3 -m pip install --upgrade pip && \
-    pip install --no-cache-dir tensorflow-hub pillow numpy && \
-    pip install gdown && pip install protobuf==3.20.0 && pip install flask && pip install flask-cors
-
-RUN gdown "https://drive.google.com/uc?export=download&id=1T1wJsyZopeNUqCnqjeRbCImxE_BhDlDN" -O /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
-
-RUN pip install /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
+    pip install --no-cache-dir numpy && pip install protobuf==3.20.0 && pip install flask && pip install flask-cors && pip install opencv-python-headless && pip install pillow
 
 EXPOSE 5000
 
