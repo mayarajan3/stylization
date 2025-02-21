@@ -70,6 +70,6 @@ if __name__ == "__main__":
         content_path = "content.png"
         texture_path = "texture.png"
         output_path = "textured_output.png"
-        apply_texture_to_white(content_path, texture_path, output_path, texture_size=50)
+        apply_texture_to_white(content_path, texture_path, output_path, texture_size=250)
     except Exception as e:
         print(f"Error: {e}")

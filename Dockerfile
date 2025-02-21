@@ -21,14 +21,11 @@ RUN apt-get update && apt-get install -y libgl1
 COPY stylize.py /app/stylize.py
 COPY texturify.py /app/texturify.py
 
-COPY fuzzy.png /app/fuzzy.png
-COPY fuzzy.png /app/texture.png
-COPY wave.jpg /app/content.png
+COPY fuzzy.jpg /app/fuzzy.png
+COPY fuzzy.jpg /app/texture.png
+COPY fuzzy.jpg /app/content.png
 
 COPY api_server.py /app/api_server.py
-
-# Copy the TensorFlow .whl file into the container
-# COPY tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl /app/tensorflow-2.3.0-cp38-cp38-linux_x86_64.whl
 
 # Install required Python packages
 RUN python3 -m pip install --upgrade pip && \
